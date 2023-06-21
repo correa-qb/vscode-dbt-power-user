@@ -47,12 +47,12 @@ from dbt.tracking import disable_tracking
 from dbt.version import __version__ as dbt_version
 
 try:
+    # dbt > 1.3
+    from dbt.contracts.graph.nodes import ColumnInfo, ManifestNode  # type: ignore
+except Exception:
     # dbt <= 1.3
     from dbt.contracts.graph.compiled import ManifestNode  # type: ignore
     from dbt.contracts.graph.parsed import ColumnInfo  # type: ignore
-except Exception:
-    # dbt > 1.3
-    from dbt.contracts.graph.nodes import ColumnInfo, ManifestNode  # type: ignore
 
 
 if TYPE_CHECKING:
